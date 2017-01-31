@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" 
+				xmlns:h="http://java.sun.com/jsf/html" 
+				xmlns:f="http://java.sun.com/jsf/core" 
+				xmlns:p="http://primefaces.org/ui"
+				
+	template="/generic/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Usuarios" />
+	</ui:define>
+
+	<ui:define name="body">
+		<p:panel styleClass="noborderpanel">
+			<h:outputText value="Usuarios" styleClass="titletext" />
+		</p:panel>
+		<p:panel styleClass="noborderpanel">
+			<ui:include src="/WEB-INF/usuarios/pagList.xhtml" />
+			<ui:include src="/WEB-INF/usuarios/dlgCreate.xhtml" />
+			<ui:include src="/WEB-INF/usuarios/dlgEdit.xhtml" />
+			<ui:include src="/WEB-INF/usuarios/dlgView.xhtml" />
+		</p:panel>
+	</ui:define>
+
+</ui:composition>
+

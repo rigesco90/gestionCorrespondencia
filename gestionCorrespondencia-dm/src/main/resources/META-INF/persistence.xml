@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	
+	<persistence-unit name="gcorrespondenciaPU" transaction-type="JTA">
+	<jta-data-source>java:/gcorrespondencia</jta-data-source>
+	<class>com.gcorrespondencia.entityes.CatBarrio</class>
+	<class>com.gcorrespondencia.entityes.CatCabEstado</class>
+	<class>com.gcorrespondencia.entityes.CatDepartamento</class>
+	<class>com.gcorrespondencia.entityes.CatEstado</class>
+	<class>com.gcorrespondencia.entityes.CatMensaje</class>
+	<class>com.gcorrespondencia.entityes.CatMenu</class>
+	<class>com.gcorrespondencia.entityes.CatMunicipio</class>
+	<class>com.gcorrespondencia.entityes.CatNivelServicio</class>
+	<class>com.gcorrespondencia.entityes.CatRangoPeso</class>
+	<class>com.gcorrespondencia.entityes.CatRol</class>
+	<class>com.gcorrespondencia.entityes.CatServicio</class>
+	<class>com.gcorrespondencia.entityes.CatTipoIdentificacion</class>
+	<class>com.gcorrespondencia.entityes.CatTipoMenu</class>
+	<class>com.gcorrespondencia.entityes.CatTipoPersona</class>
+	<class>com.gcorrespondencia.entityes.CatTipoReparto</class>
+	<class>com.gcorrespondencia.entityes.CatTipoTelefono</class>
+	<class>com.gcorrespondencia.entityes.CatZona</class>
+	<class>com.gcorrespondencia.entityes.Direccion</class>
+	<class>com.gcorrespondencia.entityes.Empresa</class>
+	<class>com.gcorrespondencia.entityes.Envio</class>
+	<class>com.gcorrespondencia.entityes.Guia</class>
+	<class>com.gcorrespondencia.entityes.GuiaEnvio</class>
+	<class>com.gcorrespondencia.entityes.GuiaPlanilla</class>
+	<class>com.gcorrespondencia.entityes.InconsistenciasValidacion</class>
+	<class>com.gcorrespondencia.entityes.Persona</class>
+	<class>com.gcorrespondencia.entityes.PersonaDirectorio</class>
+	<class>com.gcorrespondencia.entityes.Planilla</class>
+	<class>com.gcorrespondencia.entityes.Prefactura</class>
+	<class>com.gcorrespondencia.entityes.Usuario</class>
+	<class>com.gcorrespondencia.entityes.Vehiculo</class>
+	<class>com.gcorrespondencia.entityes.VitacoraGuia</class>
+	<class>com.gcorrespondencia.entityes.ZonaBarrio</class>
+	<exclude-unlisted-classes>false</exclude-unlisted-classes>
+	<properties>
+
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.connection.CharSet" value="utf8" />
+			<property name="hibernate.connection.characterEncoding" value="utf8" />
+			<property name="hibernate.connection.useUnicode" value="utf8" />
+
+		</properties>
+	</persistence-unit>
+</persistence>
+	

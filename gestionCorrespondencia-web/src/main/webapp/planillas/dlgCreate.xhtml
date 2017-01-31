@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<p:dialog id="dlgGuiaCreate" widgetVar="dlgGuiaCreate" modal="true"
+		resizable="false" appendTo="@(body)" header="Crear Guia"
+		closeOnEscape="true" height="500" width="1150">
+
+
+		<h:form id="frmGuiaCreate">
+			<p:fieldset legend="Nueva Guía" style="margin-bottom:10px">
+				<div align="center">
+					<h:panelGroup id="display">
+						<p:panelGrid id="pnlPrincipalCrearGuia"
+							styleClass="panelGridEditCreate">
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Código:" id="lblCodigo"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:inputText id="txtCodigo"
+										value="#{planillaController.guiaPlanilla.planilla.codigoPlanilla}"
+										title="Codigo" required="true" />
+								</p:column>
+
+								<p:column>
+									<p:spacer width="5" height="5" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Servicio:" id="lblServicio"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<h:panelGrid columns="2">
+										<p:inputText id="txtServicio"
+											value="#{planillaController.guiaPlanilla.planilla.codigoPlanilla}"
+											title="Codigo" required="true" />
+
+										<p:commandButton icon="ui-icon-search"
+											title="Buscar Servicio"
+											oncomplete="PF('dlgServicioSearch').show()" immediate="true" />
+									</h:panelGrid>
+								</p:column>
+
+								<p:column>
+									<p:spacer width="5" height="5" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Descripción:" id="lblDescripcion"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:inputTextarea rows="2" cols="30"
+										value="#{planillaController.guiaPlanilla.guia.descripcionEnvio}" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Remitente:" id="lblCliente"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:autoComplete id="autCliente"
+										value="#{planillaController.guiaPlanilla.guia.persona1}"
+										completeMethod="#{planillaController.completPersona}"
+										var="persona"
+										itemLabel="#{persona.primerNombre.concat(' ').concat(persona.primerApellido).concat(' - ').concat(persona.numIdentificacion)==null or '' ? persona.razonSocial.concat(' - ').concat(persona.numIdentificacion) : persona.primerNombre.concat(' ').concat(persona.primerApellido).concat(' - ').concat(persona.numIdentificacion)}"
+										itemValue="#{persona}" converter="dinamizadorConverter"
+										requiredMessage="La persona es obligatorio" required="true"
+										maxlength="10" forceSelection="true" size="30">
+									</p:autoComplete>
+									<p:watermark for="autCliente" value="Buscar Remitente." />
+								</p:column>
+
+								<p:column>
+									<p:spacer width="5" height="5" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Destinatario:" id="lblDestinatario"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+
+								<p:column>
+									<p:autoComplete id="autDestinatario"
+										value="#{planillaController.guiaPlanilla.guia.persona2}"
+										completeMethod="#{planillaController.completPersona}"
+										var="persona"
+										itemLabel="#{persona.primerNombre.concat(' ').concat(persona.primerApellido).concat(' - ').concat(persona.numIdentificacion)==null or '' ? persona.razonSocial.concat(' - ').concat(persona.numIdentificacion) : persona.primerNombre.concat(' ').concat(persona.primerApellido).concat(' - ').concat(persona.numIdentificacion)}"
+										itemValue="#{persona}" converter="dinamizadorConverter"
+										requiredMessage="La persona es obligatorio" required="true"
+										maxlength="10" forceSelection="true" size="28">
+										<p:ajax event="itemSelect" update="txtDirRemitente" />
+									</p:autoComplete>
+									<p:watermark for="autDestinatario" value="Buscar Destinatario." />
+								</p:column>
+								<p:column>
+									<p:spacer width="5" height="5" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Dirección Destinatario: "
+										id="lblDireccion" styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:inputText id="txtDirRemitente"
+										value="#{planillaController.guiaPlanilla.guia.persona2.direccion.descripcionDireccion}"
+										disabled="true" />
+								</p:column>
+							</p:row>
+							
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Peso Real:" id="lblPesoReal"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:inputNumber id="inPesoReal"
+										value="#{planillaController.guiaPlanilla.guia.peso_real}"/>									
+								</p:column>
+
+								<p:column>
+									<p:spacer width="5" height="5" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Volumen Real:" id="lblVolumenReal"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+
+								<p:column>
+									<p:inputNumber id="inVolReal"
+										value="#{planillaController.guiaPlanilla.guia.volumen_real}"/>
+								</p:column>
+
+								<p:column>
+									<p:spacer width="5" height="5" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Valor declarado: "
+										id="lblVrDeclarado" styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+
+								<p:column>
+									<p:inputText id="txtVrDeclarado"
+										value="#{planillaController.guiaPlanilla.guia.valor_declarado}"
+										disabled="true" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</h:panelGroup>
+				</div>
+
+				<p:separator />
+
+				<h:panelGroup>
+					<div align="center">
+						<p:outputLabel value="Guias"
+							style="font-size: 20px; font-weight:bold;" />
+					</div>
+				</h:panelGroup>
+			</p:fieldset>
+		</h:form>
+
+	</p:dialog>
+
+</ui:composition>
+
+</html>

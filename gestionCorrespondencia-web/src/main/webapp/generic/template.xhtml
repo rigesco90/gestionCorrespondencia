@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><ui:insert name="title">Gestión Correspondencia</ui:insert></title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputScript library="js" name="script.js" />
+	<link rel="shortcut icon" type="image/x-icon" href="resources/image/favicon.ico" />
+</h:head>
+
+<h:body>
+
+	<p:growl id="growl" life="5000" showDetail="true" />
+
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" size="38" collapsible="true" gutter="0">
+			<p:panelGrid styleClass="topbar">
+				<p:row>
+					<p:column style="width: 11%;" styleClass="topbaritem">
+						<h:outputText value="Gestión Correspondencia" />
+					</p:column>
+
+					<p:column style="width: 14%;" styleClass="topbaritem">
+						<h:outputText value="Projects Management" />
+					</p:column>
+					<p:column style="text-align: right;">
+						<div align="right">
+							<h:form id="frmRegister">
+								<h:panelGrid columns="5">
+
+									<h:outputText style="color: #ffffff;" value="Actual Period: " />
+									<h:outputText value="PREUBA" style="margin-right:10px; color: #ffffff" />
+
+									<p:selectOneMenu id="selPersonsTemplate" style="width:85px">
+										<f:selectItem itemValue="#{0}" itemLabel="Login as:" />
+										
+									</p:selectOneMenu>
+									
+									<p:commandButton value="Modules Person" />
+								</h:panelGrid>
+							</h:form>
+						</div>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="220" collapsible="true" gutter="0">
+			<h:graphicImage library="image" name="company_logo.png" style="width:180px; padding-left: 20px; padding-top: 12px;" />
+			<ui:include src="/generic/appmenu.xhtml" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+			<ui:insert name="body" />
+		</p:layoutUnit>
+
+	</p:layout>
+
+</h:body>
+
+</html>

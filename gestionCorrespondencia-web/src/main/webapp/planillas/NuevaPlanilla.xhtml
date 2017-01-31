@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/generic/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="Planillas" />
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form id="frmPlanillaCreate">
+			<p:fieldset legend="Nueva Planilla" style="margin-bottom:10px">
+				<div align="center">
+					<h:panelGroup id="display">
+						<p:panelGrid id="pnlPrincipalCrearPlanilla"
+							styleClass="panelGridEditCreate">
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Cliente" id="lblCliente"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:autoComplete id="autCliente"
+										value="#{personaController.persona}"
+										completeMethod="#{planillaController.completPersona}"
+										var="persona"
+										itemLabel="#{persona.primerNombre.concat(' ').concat(persona.primerApellido).concat(' - ').concat(persona.numIdentificacion)==null or '' ? persona.razonSocial.concat(' - ').concat(persona.numIdentificacion) : persona.primerNombre.concat(' ').concat(persona.primerApellido).concat(' - ').concat(persona.numIdentificacion)}"
+										itemValue="#{persona}" converter="dinamizadorConverter"
+										requiredMessage="La persona es obligatorio" required="true"
+										maxlength="10" forceSelection="true" size="30">										
+									</p:autoComplete>
+								</p:column>
+
+								<p:column>
+									<p:spacer width="25" height="10" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Identificacón" id="lblNIT"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:inputText id="txtNIT"
+										value="#{planillaController.persona.numIdentificacion}"
+										disabled="true" />
+								</p:column>
+
+								<p:column>
+									<p:spacer width="25" height="10" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Dirección" id="lblDireccion"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:inputText id="txtDirEmpresa"
+										value="#{planillaController.persona.direccion}"
+										disabled="true" />
+								</p:column>
+
+								<p:column>
+									<p:spacer width="25" height="10" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Número Planilla " id="lblNumPlanilla"
+										for="txtNumPlanilla" styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:inputText id="txtNumPlanilla"
+										value="#{planillaController.guiaPlanilla.planilla.codigoPlanilla}" />
+								</p:column>
+
+								<p:column>
+									<p:spacer width="25" height="10" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Estado" id="lblEstado" for="lstEstados"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:selectOneMenu id="lstEstados"
+										value="#{planillaController.guiaPlanilla.planilla.catEstado.idEstado}">
+										<f:selectItems value="#{planillaController.listEstados}"
+											var="estado" itemLabel="#{estado.descripcionEstado}"
+											itemValue="#{estado.idEstado}" />
+									</p:selectOneMenu>
+								</p:column>
+
+								<p:column>
+									<p:spacer width="25" height="10" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="Fecha" id="lblFecha" for="fecha"
+										styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:calendar id="fecha"
+										value="#{planillaController.guiaPlanilla.planilla.fechaCreacion}"
+										pattern="MM/dd/yyyy - hh:mm:ss a">
+									</p:calendar>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="Teléfono " id="lblTelefono"
+										for="txtTelefono" styleClass="negrita" />
+									<h:outputLabel value="*" class="asterisco" />
+								</p:column>
+								<p:column>
+									<p:inputText id="txtTelefono" value="Telefono" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</h:panelGroup>
+				</div>
+			</p:fieldset>
+
+			<p:spacer height="5" />
+			<div align="center">
+				<p:commandButton id="btnNuevaGuia" icon="ui-icon-plusthick"
+					value="Nueva Guía" title="Nueva Guía"
+					oncomplete="PF('dlgGuiaCreate').show()" immediate="true" />
+
+				<p:spacer height="5" />
+
+			</div>
+
+			<p:separator />
+			<!-- 			panel para adicionar guias a la planilla -->
+			<p:panel id="pnlNuevaGuia" header="Adicionar Guias">
+				<h:panelGroup>
+					<p:panelGrid id="pngGuia" styleClass="panelGridEditCreate">
+						<p:row>
+							<p:column>
+								<p:outputLabel id="lblCodGuia" for="txtCodGuia" value="Código"
+									styleClass="negrita" />
+								<h:outputLabel value="*" class="asterisco" />
+							</p:column>
+							<p:column>
+								<p:inputText id="txtCodGuia"
+									value="#{planillaController.guiaPlanilla.planilla.codigoPlanilla}" />
+							</p:column>
+
+							<p:column>
+								<p:spacer width="25" height="10" />
+							</p:column>
+
+							<p:column>
+								<p:outputLabel id="lblServicio" value="Servicio"
+									styleClass="negrita" />
+								<h:outputLabel value="*" class="asterisco" />
+							</p:column>
+							<p:column>
+								<!-- 								<p:selectOneMenu id="lstServicio" -->
+								<!-- 									value="{planillaController.guia.idGuia}"> -->
+								<!-- 									<f:selectItem itemLabel="Seleccione." itemValue="" /> -->
+								<!-- 									<f:selectItems value="{planillaController.listServicios}" -->
+								<!-- 										var="servicio" -->
+								<!-- 										itemLabel="{servicio.descripcionNivelServicio}" -->
+								<!-- 										itemValue="{tipodentificacion.idNivelServicio}" /> -->
+								<!-- 								</p:selectOneMenu> -->
+							</p:column>
+
+							<p:column>
+								<p:spacer width="25" height="10" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</h:panelGroup>
+			</p:panel>
+		</h:form>
+
+
+		<ui:include src="./dlgCreate.xhtml" />
+		<ui:include src="./servicios/dlgCreateServicios.xhtml" />
+		<ui:include src="./servicios/dlgSearchServicios.xhtml" />
+
+	</ui:define>
+
+</ui:composition>

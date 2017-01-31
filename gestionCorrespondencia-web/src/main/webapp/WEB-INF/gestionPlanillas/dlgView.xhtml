@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<p:dialog id="dlgAreaView" widgetVar="dlgAreaView" modal="true"
+		resizable="false" appendTo="@(body)"
+		header="Area" closeOnEscape="true">
+
+		<h:form id="frmAreaView">
+
+			<h:panelGroup id="display">
+<!-- 				<p:panelGrid columns="2" columnClasses="column" -->
+<!-- 					rendered="#{areaController.area != null}"> -->
+
+<!-- 					<p:outputLabel value="Code" for="code" /> -->
+<!-- 					<p:outputLabel id="code" value="#{areaController.area.code}" -->
+<!-- 						title="Area" /> -->
+
+<!-- 					<p:outputLabel value="Description" for="area" /> -->
+<!-- 					<p:outputLabel id="area" value="#{areaController.area.description}" -->
+<!-- 						title="Area" /> -->
+
+<!-- 					<p:outputLabel value="Active" for="active" /> -->
+<!-- 					<p:selectBooleanCheckbox id="active" -->
+<!-- 						value="#{areaController.area.active}" title="Active" -->
+<!-- 						disabled="true" /> -->
+					
+<!-- 					<h:outputText value="#{msg.ViewSystemParameterLabel_createTime}" /> -->
+<!-- 					<h:outputText -->
+<!-- 						value="#{areaController.area.createTime}" -->
+<!-- 						title="#{msg.ViewSystemParameterTitle_createTime}"> -->
+<!-- 						<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" /> -->
+<!-- 					</h:outputText> -->
+
+<!-- 					<h:outputText value="#{msg.ViewSystemParameterLabel_updateTime}" /> -->
+<!-- 					<h:outputText -->
+<!-- 						value="#{areaController.area.updateTime}" -->
+<!-- 						title="#{msg.ViewSystemParameterTitle_updateTime}"> -->
+<!-- 						<f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" /> -->
+<!-- 					</h:outputText> -->
+
+<!-- 				</p:panelGrid> -->
+<!-- 				<p:commandButton value="#{msg.Close}" -->
+<!-- 					onclick="PF('dlgAreaView').hide()" /> -->
+			</h:panelGroup>
+
+		</h:form>
+
+	</p:dialog>
+
+</ui:composition>
+
+</html>

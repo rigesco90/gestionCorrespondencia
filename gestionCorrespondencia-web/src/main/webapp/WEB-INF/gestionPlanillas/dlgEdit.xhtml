@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+	<p:dialog id="dlgAreaEdit" widgetVar="dlgAreaEdit" modal="true"
+		resizable="false" appendTo="@(body)" header="Edit Area"
+		closeOnEscape="true">
+
+		<h:form id="frmAreaEdit">
+
+			<h:panelGroup id="display">
+<!-- 				<p:panelGrid columns="2" columnClasses="column" -->
+<!-- 					rendered="#{areaController.area != null}"> -->
+					
+<!-- 					<p:outputLabel value="Code" for="code" /> -->
+<!-- 					<p:inputText id="code" value="#{areaController.area.code}" -->
+<!-- 						title="Area" /> -->
+
+<!-- 					<p:outputLabel value="Description" for="area" /> -->
+<!-- 					<p:inputText id="area" value="#{areaController.area.description}" -->
+<!-- 						title="Area" /> -->
+
+<!-- 					<p:outputLabel value="Active" for="active" /> -->
+<!-- 					<p:selectBooleanCheckbox id="active" -->
+<!-- 						value="{areaController.area.active}" title="Active" /> -->
+<!-- 				</p:panelGrid> -->
+<!-- 				<p:spacer height="20"></p:spacer> -->
+
+<!-- 				<p:commandButton actionListener="{areaController.edit}" -->
+<!-- 					value="#{msg.Save}" -->
+<!-- 					update="display,:frmAreaList:datalistArea,:growl" -->
+<!-- 					oncomplete="handleSubmit(xhr,status,args,PF('dlgAreaEdit'));"> -->
+<!-- 					<p:confirm header="#{msg.ConfirmationHeader}" -->
+<!-- 						message="#{msg.ConfirmEditMessage}" icon="ui-icon-alert" /> -->
+<!-- 				</p:commandButton> -->
+<!-- 				<p:commandButton value="#{msg.Cancel}" -->
+<!-- 					oncomplete="PF('dlgAreaEdit').hide()" update="display" -->
+<!-- 					process="@this" immediate="true" resetValues="true" /> -->
+			</h:panelGroup>
+
+		</h:form>
+
+	</p:dialog>
+
+</ui:composition>
+
+</html>

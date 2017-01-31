@@ -1,0 +1,444 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 31, 2014, 9:21:47 PM
+    Author     : das
+*/
+table.panelGridEditCreate
+{
+    margin-top: 20px;
+}
+
+.ui-widget .panelGridEditCreate textarea, .ui-widget .panelGridEditCreate input
+{
+    width: 100%;    
+}
+/*.ui-widget .panelGridEditCreate input
+{
+    width: 90%;    
+}*/
+
+.ui-widget .panelGridEditCreate td
+{    
+    border-width: 0px;
+    padding: 10px;
+    background-color: inherit;
+    vertical-align: middle;
+}
+.ui-widget .panelGridEditCreate tr
+{    
+    border: none;    
+}
+
+.ui-widget .panelGridEditCreate .labelCreateEdit
+{
+    text-align: right;
+}
+
+/*Clase utilizada en las vistas para poner un asterisco (*) indicando que el campo es obligatorio */
+.asterisco{
+    font-size: 12pt; 
+    vertical-align: middle;
+    font-weight: bold; 
+    color: #e33b06;
+}
+
+/*Clase utilizada para dar instrucciones al usuario que determinados campos son obligatorios*/
+.msjObligatorios{
+    font-size: 12pt;    
+    color: #e33b06;
+    display: block;
+    margin-top: 20px;
+}
+
+#divMessages
+{
+    width: 100%;
+    text-align :right;
+}
+
+/*Clase utilizada en las listas de elementos*/
+.lista{
+    width: 80%;
+}
+
+.listaPopUp{
+    width: 90%;
+}
+
+.sublista{
+    width: 50%;
+}
+
+/*Clase utilizada para las columnas de una lista*/
+.listaColumna{
+    max-width: 400px;
+}
+
+.ui-widget .listaColumna input{
+    width: 50%;
+}
+
+/*Clase utilizada para la columna de Acciones de una lista*/
+.listaAcciones{
+    text-align: center;
+}
+
+.listaAcciones a{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.divBotones{
+
+}
+
+.divBotones button{
+    margin: 5px;    
+}
+
+.divBotonesSublista{    
+    display: inline-block;
+    width: 50%;
+}
+
+.divBotonesSublista button{
+    float:left;
+    margin: 5px;    
+}
+
+.divBotonesSublista label{
+    float:left;    
+    margin-top: 10px;
+}
+
+.ui-widget .grupoControles{
+    width: 50%;
+    margin: 10px;
+    background: none;
+}
+
+.imgAutocomplete{
+    position: absolute;
+    margin-left: -28px;
+    margin-top: 4px;
+    height:20px;
+    width:20px
+}
+
+.modalDialog{
+    width: 70%;
+    left: 200px;
+}
+
+.divDescripcionRep{
+    text-align: left;
+    margin-bottom: 30px;
+    margin-top: 10px
+}
+
+/*Clase para dibujar una circunferencia*/
+.circulo {
+    height: 28px;
+    border-radius: 50%;
+    width: 28px;
+}
+
+/*Clase para dar tamaño a un catalogo*/
+.selectOneMenu{
+    width: 175px;
+}  
+
+/*Clase para el scroll de los text area*/
+.scrollGeneral {
+    width: 700px;
+    height: 80px;
+}
+
+/*Clase para el tex area*/
+.textAreaGeneral {
+    width: 780px;
+    margin-left: 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.negrita{
+    text-align: center; font-weight: bold; color: #000000;
+}
+
+.inputControl-label {
+    box-sizing: border-box;
+    float: left;
+    line-height: 13px;
+    text-align: right;
+    width: 135px;
+}
+
+.inputControl_readonly {
+    background-color: #eff2f0 !important;
+    color: #2e3436 !important;
+    text-shadow: none !important;
+}
+
+.ui-state-disabled {
+    opacity: 0.80 !important;
+}
+
+.inputControl_disabled {
+    background-color: #cfd7d3 !important;
+    color: #2e3436 !important;
+    text-shadow: none !important;
+}
+
+tr.ui-datatable-even:hover, tr.ui-datatable-even:active,
+tr.ui-datatable-odd:hover, tr.ui-datatable-odd:active {
+    /*background-color: #78BCFF;*/
+    background-color: #BEF781 !important;
+}
+
+.ui-widget {
+	font-size: 12px;
+	font-family: sans-serif;
+
+	/*background-color: transparent;*/
+	/*opacity: 0.8; -moz-opacity: 0.8; filter: alpha(opacity=80); -khtml-opacity: 0.8;*/
+}
+
+.ui-corner-all {
+	border-radius: 0 0 0 0;
+}
+/*.ui-inputtext,.ui-inputtextarea{
+    text-transform: uppercase;    
+}*/
+.lowercase {
+	text-transform: lowercase !important;
+}
+
+.ui-layout-unit-content {
+	background-color: transparent;
+}
+
+.user {
+	background: url('icons/menu/user.png') no-repeat !important;
+	width: 200px;
+	height: 200px;
+}
+
+body {
+	/*    background: url("fondo3.jpg") no-repeat top;
+        background-size: cover;*/
+	font-size: 12px;
+	font-family: sans-serif;
+}
+
+.notrasparent {
+	background-color: white !important;
+}
+
+.available {
+	background-color: #66CC66 !important;
+}
+
+.pending {
+	background-color: #FF3333 !important;
+}
+
+.dateTimeField input {
+	width: 130px;
+}
+
+.table_left {
+	text-align: left;
+}
+
+.panelattop {
+	vertical-align: top;
+}
+
+table.summtable {
+	border: 1px solid #D5D5D5;
+	border-collapse: collapse;
+}
+
+table.summtable td {
+	border: 1px solid #D5D5D5;
+	border-collapse: collapse;
+}
+
+table.summtable th {
+	border: 1px solid #D5D5D5;
+	border-collapse: collapse;
+	background-color: #f5f5f5;
+}
+
+td.summfield {
+	width: 70px;
+	padding: 8px;
+	text-align: right;
+	background-color: #fcfcfc;
+}
+
+.truncatetext {
+	white-space: nowrap !important;
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	-o-text-overflow: ellipsis !important;
+	-ms-text-overflow: ellipsis !important;
+}
+
+.yes {
+	background-color: #00CC66 !important;
+}
+
+.no {
+	background-color: #FF3300 !important;
+}
+
+.yes-text {
+	color: #00CC66 !important;
+}
+
+.not-text {
+	color: #FF3300 !important;
+}
+
+chkbutton {
+	width: 16px !important;
+	height: 16px !important;
+	color: #2779AA !important;
+	font-size: 12px !important;
+	display: block !important;
+}
+
+.ui-selectonemenu-label {
+	width: 80% !important;
+}
+
+.bigbutton {
+	background: #c02c2c !important;
+	background-image: linear-gradient(to bottom, #df3f3f, #a21a1a)
+		!important;
+	border: 1px solid rgba(0, 0, 0, 0.4) !important;
+	color: #ffffff !important;
+	box-shadow: none !important;
+	text-shadow: none !important;
+}
+
+.ui-button {
+	text-shadow: none !important;
+}
+
+.createbutton {
+	height: 32px !important;
+	color: green !important;
+	margin-top: 6px;
+	margin-bottom: 8px;
+}
+
+.waitingdialog {
+	border: 0px;
+	box-shadow: 0 0 0px rgba(50, 50, 50, 0) !important;
+	-moz-box-shadow: 0 0 0px rgba(50, 50, 50, 0) !important;
+	-webkit-box-shadow: 0 0 0px rgba(50, 50, 50, 0) !important;
+}
+
+.menulabel {
+	font-size: 14px;
+	color: white;
+}
+
+.menu-item :hover {
+	background-color: #48D1CC;
+	/*	-webkit-transform: scale(0.93);
+	transform: scale(0.93);
+	-webkit-transition: .2s ease-in-out;
+	transition: .2s ease-in-out;*/
+}
+
+.ui-layout-unit .ui-layout-unit-content {
+	padding: 0px !important;
+}
+
+.ui-layout-pane-center {
+	border-top: 0;
+	border-left: 1;
+}
+
+.ui-layout-pane-north {
+	border: 1;
+	padding: 0px !important;
+	margin: 0px !important;
+	border-color: #777171;
+}
+
+.ui-layout-pane-west {
+	border: 0;
+	border-color: #777171;
+	background-color: #f0eeee;
+}
+
+.ui-layout-resizer, .ui-layout-resizer-north, .ui-layout-resizer-open,
+	.ui-layout-resizer-north-open {
+	height: 0px !important;
+}
+
+.nobordergrid {
+	width: 100%;
+}
+
+.nobordergrid.ui-panelgrid>*>tr, .nobordergrid.ui-panelgrid>*>tr>td {
+	border: none;
+}
+
+.topbar {
+	width: 100%;
+	height: 15px !important;
+}
+
+.topbar.ui-panelgrid>*>tr, .topbar.ui-panelgrid>*>tr>td {
+	background-color: #B40404;
+	border: none;
+	height: 15px !important;
+}
+
+.topbaritem {
+	color: #E7E7E7;
+}
+
+.topbaritem:hover {
+	color: #ffffff;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+	background-color: #f6ff66;
+	border-color: #babdb6;
+	color: #000000;
+}
+
+.attachment-table {
+	width: 600px;
+}
+
+.attachment-table>*>tr>td {
+	border: none;
+}
+
+.attachment-table thead {
+	display: none;
+}
+
+.noborderpanel {
+	border: 0;
+	margin-bottom: 11px;
+}
+
+.titletext {
+	font-weight: bold;
+	font-size: 19px;
+	color: #585858;
+}

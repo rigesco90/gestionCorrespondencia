@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<p:dialog id="dlgPersonaCreate" widgetVar="dlgPersonaCreate"
+		modal="true" resizable="false" appendTo="@(body)"
+		header="Crear Persona" closeOnEscape="true" height="350" width="1200"
+		showEffect="clip" hideEffect="clip">
+
+		<h:form id="frmPersonaCreate">
+
+			<h:panelGroup id="display">
+
+				<h:panelGrid columns="2" id="pngCreate">
+
+					<p:outputLabel value="Tipo Persona:" id="lblTipoPersona"
+						for="lstTipoPersona" />
+					<p:selectOneMenu id="lstTipoPersona"
+						value="#{personaController.persona.catTipoPersona.idTipoPersona}"
+						style="width:90px">
+						<f:selectItem itemLabel="Seleccione..." itemValue=" " />
+						<f:selectItems value="#{personaController.listTipoPersona}"
+							var="tipoPersona"
+							itemLabel="#{tipoPersona.descripcionTipoPersona}"
+							itemValue="#{tipoPersona.idTipoPersona}" />
+						<p:ajax event="change" update="pnlPersonaJur"
+							listener="#{personaController.validarTipoPersona}"
+							process="lstTipoPersona" />
+					</p:selectOneMenu>
+
+				</h:panelGrid>
+
+				<p:spacer width="80" height="50" />
+
+				<h:panelGroup id="pngPersonaJur" styleClass="pngPersonaJur">
+					<p:panel header="Persona Jurídica" id="pnlPersonaJur"
+						rendered="#{personaController.tipoPersona}">
+						<h:panelGrid columns="8">
+							<p:outputLabel id="lblTipoIdentificacion"
+								value="Tipo identificación:" for="lstTipoIdentificacion" />
+							<p:selectOneMenu id="lstTipoIdentificacion" style="width:90px"
+								value="#{personaController.persona.catTipoIdentificacion.idTipoIdentificacion}">
+								<f:selectItem itemLabel="Seleccione." itemValue="" />
+								<f:selectItems
+									value="#{personaController.listTipoIdentificacion}"
+									var="tipodentificacion"
+									itemLabel="#{tipodentificacion.descripcionTipoIdentificacion}"
+									itemValue="#{tipodentificacion.idTipoIdentificacion}" />
+							</p:selectOneMenu>
+
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel value="NIT: " id="lblNit" for="txtNit" />
+							<p:inputText id="txtNit"
+								value="#{personaController.persona.numIdentificacion}" />
+
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel value="Razon Social: " id="lblRazonSocial"
+								for="txtRazonSocial" />
+							<p:inputText id="txtRazonSocial"
+								value="#{personaController.persona.razonSocial}" />
+
+							<p:outputLabel id="lblDeptos" value="Departamentos"
+								for="lstDeptos" />
+							<p:selectOneMenu id="lstDeptos" style="width:90px"
+								value="#{personaController.persona.direccion.catBarrio.catMunicipio.catDepartamento.idDepartamento}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{personaController.listDeptos}"
+									var="deptos" itemLabel="#{deptos.descripcionDepartamento}"
+									itemValue="#{deptos.idDepartamento}" />
+								<p:ajax listener="#{personaController.listMunicipiosPorDepto}"
+									update="lstMpios" event="change" process="lstDeptos" />
+							</p:selectOneMenu>
+
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel id="lblMpios" value="Municipios: " for="lstMpios" />
+							<p:selectOneMenu id="lstMpios" style="width:90px"
+								value="#{personaController.persona.direccion.catBarrio.catMunicipio.idMunicipio}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{personaController.listMpios}"
+									var="mpios" itemLabel="#{mpios.descripcionMunicipio}"
+									itemValue="#{mpios.idMunicipio}" />
+								<p:ajax listener="#{personaController.listBarriosPorMpio}"
+									update="autBarrios" event="change" process="lstMpios" />
+							</p:selectOneMenu>
+
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel id="lblBarrios" value="Barrio: " for="autBarrios" />
+
+							<h:panelGroup id="pngAutcomBarrio" styleClass="pngAutcomBarrio">
+								<h:panelGrid columns="2">
+									<p:autoComplete id="autBarrios"
+										value="#{personaController.persona.direccion.catBarrio}"
+										completeMethod="#{personaController.autocompletBarrio}"
+										var="barrio" itemLabel="#{barrio.descripcionBarrio}"
+										itemValue="#{barrio}" converter="ConvertAutocomplete"
+										requiredMessage="El barrio es obligatorio" required="true"
+										maxlength="10" forceSelection="true">
+										<p:ajax event="itemSelect" process="@this" />
+									</p:autoComplete>
+									<p:commandButton id="btnNuevaDireccion" icon="ui-icon-disk"
+										title="Nueva Direccíon"
+										oncomplete="PF('dlgNewDireccion').show()" immediate="true" />
+								</h:panelGrid>
+							</h:panelGroup>
+
+							<p:outputLabel value="Dirección: " id="lblDireccion"
+								for="busDireccion" />
+							<p:inputText id="busDireccion"
+								value="#{personaController.persona.direccion.descripcionDireccion}" />
+						</h:panelGrid>
+					</p:panel>
+				</h:panelGroup>
+
+				<!-- 				formulario persona natural -->
+
+				<h:panelGroup id="pngPersonaNat" styleClass="pngPersonaNat">
+					<p:panel header="Persona Natural" id="pnlPersonaNat"
+						rendered="#{!personaController.tipoPersona}">
+						<h:panelGrid columns="8">
+							<p:outputLabel id="lblTipoIdentificacionpn"
+								value="Tipo identificación:" for="lstTipoIdentificacionpn" />
+							<p:selectOneMenu id="lstTipoIdentificacionpn" style="width:90px"
+								value="#{personaController.persona.catTipoIdentificacion.idTipoIdentificacion}">
+								<f:selectItem itemLabel="Seleccione." itemValue="" />
+								<f:selectItems
+									value="#{personaController.listTipoIdentificacion}"
+									var="tipodentificacion"
+									itemLabel="#{tipodentificacion.descripcionTipoIdentificacion}"
+									itemValue="#{tipodentificacion.idTipoIdentificacion}" />
+							</p:selectOneMenu>
+
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel value="Número de cédula " id="lblCC" for="txtCC" />
+							<p:inputText id="txtCC"
+								value="#{personaController.persona.numIdentificacion}" />
+
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel value="Primer Nombre: " id="lblPrimerNombre"
+								for="txtPrimerNombre" />
+							<p:inputText id="txtPrimerNombre"
+								value="#{personaController.persona.primerNombre}" />
+
+							<p:outputLabel value="Segundo Nombre: " id="lblSegundoNombre"
+								for="txtSegundoNombre" />
+							<p:inputText id="txtSegundoNombre"
+								value="#{personaController.persona.segundoNombre}" />
+							
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel value="Primer Apellido " id="lblPrimerApellido"
+								for="txtPrimerApellido" />
+							<p:inputText id="txtPrimerApellido"
+								value="#{personaController.persona.primerApellido}" />
+								
+							<p:spacer width="40" height="30" />
+							
+							<p:outputLabel value="Segundo Apellido " id="lblSegundoApellido"
+								for="txtSegundoApellido" />
+							<p:inputText id="txtSegundoApellido"
+								value="#{personaController.persona.segundoApellido}" />
+
+							<p:outputLabel id="lblDeptospn" value="Departamento:"
+								for="lstDeptospn" />
+							<p:selectOneMenu id="lstDeptospn" style="width:90px"
+								value="#{personaController.persona.direccion.catBarrio.catMunicipio.catDepartamento.idDepartamento}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{personaController.listDeptos}"
+									var="deptos" itemLabel="#{deptos.descripcionDepartamento}"
+									itemValue="#{deptos.idDepartamento}" />
+								<p:ajax listener="#{personaController.listMunicipiosPorDepto}"
+									update="lstMpiospn" event="change" process="lstDeptospn" />
+							</p:selectOneMenu>
+
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel id="lblMpiospn" value="Municipios: "
+								for="lstMpiospn" />
+							<p:selectOneMenu id="lstMpiospn" style="width:90px"
+								value="#{personaController.persona.direccion.catBarrio.catMunicipio.idMunicipio}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{personaController.listMpios}"
+									var="mpios" itemLabel="#{mpios.descripcionMunicipio}"
+									itemValue="#{mpios.idMunicipio}" />
+								<p:ajax listener="#{personaController.listBarriosPorMpio}"
+									update="autBarriospn" event="change" process="lstMpiospn" />
+							</p:selectOneMenu>
+
+							<p:spacer width="40" height="30" />
+
+							<p:outputLabel id="lblBarriospn" value="Barrio: "
+								for="autBarriospn" />
+
+							<h:panelGroup id="pngAutcomBarriopn"
+								styleClass="pngAutcomBarriopn">
+								<h:panelGrid columns="2">
+									<p:autoComplete id="autBarriospn"
+										value="#{personaController.persona.direccion.catBarrio}"
+										completeMethod="#{personaController.autocompletBarrio}"
+										var="barrio" itemLabel="#{barrio.descripcionBarrio}"
+										itemValue="#{barrio}" converter="ConvertAutocomplete"
+										requiredMessage="El barrio es obligatorio" required="true"
+										maxlength="10" forceSelection="true">
+										<p:ajax event="itemSelect" process="@this" />
+									</p:autoComplete>
+									<p:commandButton id="btnNuevaDireccionpn" icon="ui-icon-disk"
+										title="Nueva Direccíon"
+										oncomplete="PF('dlgNewDireccion').show()" immediate="true" />
+								</h:panelGrid>
+							</h:panelGroup>
+
+							<p:outputLabel value="Dirección: " id="lblDireccionpn"
+								for="busDireccionpn" />
+							<p:inputText id="busDireccionpn"
+								value="#{personaController.persona.direccion.descripcionDireccion}" />
+						</h:panelGrid>
+					</p:panel>
+				</h:panelGroup>
+				
+				<p:spacer width="0" height="30" />
+
+				<p:commandButton actionListener="#{personaController.guardarPersona}"
+					value="Guardar"
+					oncomplete="handleSubmit(xhr,status,args,PF('dlgPersonaCreate'));"
+					process="@this, pngPersonaJur, pngPersonaNat" update="pngPersonaJur, pngPersonaNat">
+				</p:commandButton>
+			</h:panelGroup>
+		</h:form>
+	</p:dialog>
+
+</ui:composition>
+
+</html>

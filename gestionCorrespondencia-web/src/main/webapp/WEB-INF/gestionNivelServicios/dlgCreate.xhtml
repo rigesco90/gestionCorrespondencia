@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<p:dialog id="dlgNivelServicioCreate"
+		widgetVar="dlgNivelServicioCreate" modal="true" resizable="false"
+		appendTo="@(body)" header="Nuevo Nivel de servicio"
+		closeOnEscape="true" showEffect="clip" hideEffect="clip">
+
+		<h:form id="frmNivelServicioCreate">
+
+			<h:panelGroup id="display">
+
+				<p:panelGrid styleClass="panelGridEditCreate" id="pnlNuevoServicio">
+					<p:row>
+						<p:column>
+							<p:outputLabel id="lblTipoReparto" value="Tipo reparto"
+								for="lstTipoReparto" styleClass="negrita" />
+							<h:outputLabel value="*" class="asterisco" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="lstTipoReparto"
+								value="#{nivelServicioController.nivelServicio.catTipoReparto.idCatTipoReparto}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems
+									value="#{nivelServicioController.listTipoReparto}"
+									var="tipoReparto"
+									itemLabel="#{tipoReparto.descripcionTipoReparto}"
+									itemValue="#{tipoReparto.idCatTipoReparto}" />
+							</p:selectOneMenu>
+						</p:column>
+
+						<p:column>
+							<p:spacer width="25" height="30" />
+						</p:column>
+
+						<p:column>
+							<p:outputLabel id="lblServicio" value="Servicio"
+								for="lstServicio" styleClass="negrita" />
+							<h:outputLabel value="*" class="asterisco" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="lstServicio"
+								value="#{nivelServicioController.nivelServicio.catServicio.idCatServicios}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{nivelServicioController.listServicios}"
+									var="serv" itemLabel="#{serv.descripcionCatServicios}"
+									itemValue="#{serv.idCatServicios}" />
+							</p:selectOneMenu>
+						</p:column>
+
+						<p:column>
+							<p:spacer width="25" height="30" />
+						</p:column>
+
+						<p:column>
+							<p:outputLabel id="lblCodigo" value="Código" for="txtCodigo"
+								styleClass="negrita" />
+							<h:outputLabel value="*" class="asterisco" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtCodigo" style="width:90px"
+								value="#{nivelServicioController.nivelServicio.codigoNivelServicio}" />
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel id="lblDeptos" value="Departamentos"
+								for="lstDeptos" styleClass="negrita" />
+							<h:outputLabel value="*" class="asterisco" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="lstDeptos" style="width:90px"
+								value="#{personaController.persona.direccion.catBarrio.catMunicipio.catDepartamento.idDepartamento}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{personaController.listDeptos}"
+									var="deptos" itemLabel="#{deptos.descripcionDepartamento}"
+									itemValue="#{deptos.idDepartamento}" />
+								<p:ajax listener="#{personaController.listMunicipiosPorDepto}"
+									update="lstMpios" event="change" process="lstDeptos" />
+							</p:selectOneMenu>
+						</p:column>
+
+						<p:column>
+							<p:spacer width="25" height="30" />
+						</p:column>
+
+						<p:column>
+							<p:outputLabel id="lblMpios" value="Municipios: "
+								for="lstMpios" styleClass="negrita" />
+							<h:outputLabel value="*" class="asterisco" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu id="lstMpios" style="width:90px"
+								value="#{personaController.persona.direccion.catBarrio.catMunicipio.idMunicipio}">
+								<f:selectItem itemLabel="Seleccione..." itemValue="" />
+								<f:selectItems value="#{personaController.listMpios}"
+									var="mpios" itemLabel="#{mpios.descripcionMunicipio}"
+									itemValue="#{mpios.idMunicipio}" />								
+							</p:selectOneMenu>
+						</p:column>
+
+						<p:column>
+							<p:spacer width="25" height="30" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:panelGroup>
+
+			<p:commandButton actionListener="#{personaController.guardarPersona}"
+				value="Guardar"
+				oncomplete="handleSubmit(xhr,status,args,PF('dlgNivelServicioCreate'));"
+				process="@this, pnlNuevoServicio" update="pnlNuevoServicio">
+			</p:commandButton>
+		</h:form>
+	</p:dialog>
+
+</ui:composition>
+
+</html>

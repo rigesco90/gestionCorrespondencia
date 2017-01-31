@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="gestionCorrespondencia">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
+        <dependent-module archiveName="gestionCorrespondencia-ejb-0.0.1-SNAPSHOT.jar" deploy-path="/" handle="module:/resource/gestionCorrespondencia-ejb/gestionCorrespondencia-ejb">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gestionCorrespondencia-dm-0.0.1-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/gestionCorrespondencia-dm/gestionCorrespondencia-dm">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gestionCorrespondencia-bo-0.0.1-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/gestionCorrespondencia-bo/gestionCorrespondencia-bo">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gestionCorrespondencia-dao-0.0.1-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/gestionCorrespondencia-dao/gestionCorrespondencia-dao">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gestionCorrespondencia-commons-0.0.1-SNAPSHOT.jar" deploy-path="/lib" handle="module:/resource/gestionCorrespondencia-commons/gestionCorrespondencia-commons">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="gestionCorrespondencia-web-0.0.1-SNAPSHOT.war" deploy-path="/" handle="module:/resource/gestionCorrespondencia-web/gestionCorrespondencia-web">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

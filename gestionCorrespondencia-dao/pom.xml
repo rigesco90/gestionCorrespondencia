@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.gestionCorrespondencia</groupId>
+    <artifactId>gestionCorrespondencia</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>gestionCorrespondencia-dao</artifactId>
+  <name>${name.project}-dao</name>
+  <developers>
+		<developer>
+			<id>dsilva</id>
+			<name>Didier Fabian Silva</name>
+			<email>didiersilva87@gmail.com</email>
+		</developer>
+	</developers>
+	<dependencies>
+		<!-- Api Java EE Dependency -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- Internal Application Dependencies -->
+		<dependency>
+			<groupId>com.gestionCorrespondencia</groupId>
+			<artifactId>gestionCorrespondencia-dm</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.gestionCorrespondencia</groupId>
+			<artifactId>gestionCorrespondencia-commons</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<p:dialog id="dlgServicioSearch" widgetVar="dlgServicioSearch"
+		modal="true" resizable="false" appendTo="@(body)"
+		header="Gestión Servicio" closeOnEscape="true" showEffect="explode"
+		hideEffect="bounce" height="450" width="900">
+
+		<h:panelGroup id="display">
+			<p:tabView>
+				<p:ajax event="tabChange"
+					listener="#{planillaController.onTabChange}" />
+				<p:tab title="Buscar Servicios">
+					<h:panelGrid columns="2" cellpadding="10">
+
+					</h:panelGrid>
+				</p:tab>
+				<p:tab title="Nuevo Servicio" closable="true">
+					<h:form id="frmServiciosCreate">
+						<p:fieldset legend="Nuevo Servicio" style="margin-bottom:1px">
+							<div align="center">
+								<h:panelGroup id="display">
+									<p:panelGrid id="pnlPrincipalCrearServicio"
+										styleClass="panelGridEditCreate">
+
+										<p:row>
+											<p:column>
+												<p:outputLabel value="Código:" id="lblNuevoServicio"
+													styleClass="negrita" />
+												<h:outputLabel value="*" class="asterisco" />
+											</p:column>
+											<p:column>
+												<p:inputText id="txtCodigo"
+													value="#{planillaController.guiaPlanilla.guia.catNivelServicio.codigoNivelServicio}"
+													title="Codigo" required="true" />
+											</p:column>
+
+											<p:column>
+												<p:spacer width="50" height="5" />
+											</p:column>
+
+											<p:column>
+												<p:outputLabel value="Descripción:" id="lblDescripcion"
+													styleClass="negrita" />
+												<h:outputLabel value="*" class="asterisco" />
+											</p:column>
+											<p:column>
+												<p:inputTextarea rows="2" cols="40"
+													value="#{planillaController.guiaPlanilla.guia.catNivelServicio.descripcionNivelServicio}" />
+											</p:column>
+										</p:row>
+
+										<p:row>
+											<p:column>
+												<p:outputLabel id="lblDeptos" value="Departamentos"
+													styleClass="negrita" />
+												<h:outputLabel value="*" class="asterisco" />
+											</p:column>
+
+											<p:column>
+												<p:selectOneMenu id="lstDeptos" style="width:90px"
+													value="#{planillaController.guiaPlanilla.guia.catNivelServicio.catMunicipio.catDepartamento.idDepartamento}">
+													<f:selectItem itemLabel="Seleccione..." itemValue="" />
+													<f:selectItems value="#{planillaController.listDeptos}"
+														var="deptos" itemLabel="#{deptos.descripcionDepartamento}"
+														itemValue="#{deptos.idDepartamento}" />
+													<p:ajax
+														listener="#{planillaController.listMunicipiosPorDepto}"
+														update="lstMpios" event="change" process="lstDeptos" />
+												</p:selectOneMenu>
+											</p:column>
+
+											<p:column>
+												<p:spacer width="50" height="5" />
+											</p:column>
+
+											<p:column>
+												<p:outputLabel id="lblMpios" value="Municipios: "
+													styleClass="negrita" />
+												<h:outputLabel value="*" class="asterisco" />
+											</p:column>
+
+											<p:column>
+												<p:selectOneMenu id="lstMpios" style="width:90px"
+													value="#{planillaController.guiaPlanilla.guia.catNivelServicio.catMunicipio.idMunicipio}">
+													<f:selectItem itemLabel="Seleccione..." itemValue="" />
+													<f:selectItems value="#{planillaController.listMunicipios}"
+														var="mpios" itemLabel="#{mpios.descripcionMunicipio}"
+														itemValue="#{mpios.idMunicipio}" />
+													<p:ajax event="change" process="lstMpios" />
+												</p:selectOneMenu>
+											</p:column>
+
+										</p:row>
+
+										<p:row>
+											<p:column>
+												<p:outputLabel id="lblPrecio" value="Precio: "
+													styleClass="negrita" />
+												<h:outputLabel value="*" class="asterisco" />
+											</p:column>
+											<p:column>
+												<p:inputNumber id="txtPrecio"
+													value="#{planillaController.guiaPlanilla.guia.catNivelServicio.precio}"
+													symbol="$ " symbolPosition="p" emptyValue="sign" />
+											</p:column>
+
+											<p:column>
+												<p:spacer width="50" height="5" />
+											</p:column>
+
+											<p:column>
+												<p:outputLabel id="lblServicio" value="Servicio: "
+													styleClass="negrita" />
+												<h:outputLabel value="*" class="asterisco" />
+											</p:column>
+											<p:column>
+												<p:selectOneMenu id="lstServicios"
+													value="#{planillaController.guiaPlanilla.guia.catNivelServicio.catServicio.idCatServicios}">
+													<f:selectItem itemValue="" itemLabel="Seleccione..." />
+													<f:selectItems value="#{planillaController.listServicios}"
+														var="servicio"
+														itemLabel="#{servicio.descripcionCatServicios}"
+														itemValue="#{servicio.idCatServicios}" />
+												</p:selectOneMenu>
+											</p:column>
+										</p:row>
+										<p:row>
+											<p:column>
+												<p:outputLabel id="lblPeso" value="Rango peso: "
+													styleClass="negrita" />
+												<h:outputLabel value="*" class="asterisco" />
+											</p:column>
+											<p:column>
+												<p:autoComplete id="autPeso"
+													value="#{planillaController.guiaPlanilla.guia.catNivelServicio.catRangoPeso}"
+													completeMethod="#{planillaController.completRangoPesos}"
+													var="peso" itemLabel="#{peso.descripcionRangoPeso}"
+													itemValue="#{peso}" converter="ConvertAutocomplete"
+													requiredMessage="La persona es obligatorio" required="true"
+													maxlength="10" forceSelection="true" size="30" />
+												<p:watermark for="autPeso" value="Buscar rango de peso." />
+											</p:column>
+
+											<p:column>
+												<p:spacer width="50" height="5" />
+											</p:column>
+
+											<p:column>
+												<p:outputLabel id="lblTipoReparto" value="Tipo Reparto: "
+													styleClass="negrita" />
+												<h:outputLabel value="*" class="asterisco" />
+											</p:column>
+											<p:column>
+												<p:selectOneMenu id="lstTipoReparto"
+													value="#{planillaController.guiaPlanilla.guia.catNivelServicio.catTipoReparto.idCatTipoReparto}">
+													<f:selectItem itemLabel="Seleccione..." itemValue="" />
+													<f:selectItems
+														value="#{planillaController.listTipoReparto}" var="tipoReparto"
+														itemLabel="#{tipoReparto.descripcionTipoReparto}" itemValue="#{tipoReparto.idCatTipoReparto}"/>
+												</p:selectOneMenu>
+											</p:column>
+										</p:row>
+									</p:panelGrid>
+								</h:panelGroup>
+							</div>
+							<p:spacer height="20" />
+							<div align="center">
+								<p:commandButton value="Guardar"
+									actionListener="#{planillaController.GuardarServicios}" />
+							</div>
+						</p:fieldset>
+					</h:form>
+
+				</p:tab>
+				<p:tab title="Rango de peso" closable="true">
+					<h:panelGrid columns="2" cellpadding="10">
+
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+		</h:panelGroup>
+	</p:dialog>
+
+</ui:composition>
+
+</html>

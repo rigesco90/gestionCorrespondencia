@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+	<h:form id="menuForm">
+		<p:menu toggleable="true" model=""
+			style="width: 97%;border: 0 !important;margin-top: 12px;	background-color: #f0eeee;">
+			<p:submenu label="Opciones">
+				<p:menuitem value="My Projects" />
+				<p:menuitem value="Score Projects" />
+				<p:menuitem value="Approval" />
+				<p:menuitem value="Funding Sources" />
+				<p:menuitem value="Reports" />
+			</p:submenu>
+			<p:submenu label="Herramientas">
+				<p:menuitem value="Clientes" outcome="/catalogos/indexPersona" />
+				<p:menuitem value="Planillas"/>
+				<p:menuitem value="Nivel de servicios" outcome="/catalogos/indexNivelServicios"/>
+				<p:menuitem value="Stage" />
+				<p:menuitem value="Detail" />
+				<p:menuitem value="Funding Source" />
+				<p:menuitem value="Person" />
+				<p:menuitem value="Period" />
+			</p:submenu>
+		</p:menu>
+	</h:form>
+</ui:composition>
+
+</html>

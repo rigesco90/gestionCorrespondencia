@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<p:dialog id="dlgNewDireccion" widgetVar="dlgNewDireccion" modal="true"
+		resizable="false" appendTo="@(body)" header="Crear nuevo barrio"
+		closeOnEscape="true" showEffect="clip" hideEffect="clip"
+		draggable="false">
+		<!-- 		<f:event type="preRenderView" -->
+		<!-- 			listener="{deptoController.obtenerBarrios}"> -->
+		<!-- 		</f:event> -->
+
+		<h:form id="frmDireccionCreate">
+
+			<h:panelGroup id="display">
+
+				<h:panelGrid columns="3">
+					
+					<p:outputLabel id="lblBarrios" value="Barrio: " for="txtBarrios" />
+					<p:inputText id="txtBarrios"
+						value="#{personaController.persona.direccion.catBarrio.descripcionBarrio}">
+					</p:inputText>
+				</h:panelGrid>
+
+			</h:panelGroup>
+
+			<p:separator />
+
+			<h:panelGroup id="pngBtnAceptar">
+				<div align="center">
+					<p:commandButton value="Aceptar"
+					  process="@this,txtBarrios"
+					  oncomplete="handleSubmit(xhr,status,args,PF('dlgNewDireccion'));"
+					  actionListener="#{personaController.guardarBarrio}"/>
+				</div>
+			</h:panelGroup>
+		</h:form>
+
+	</p:dialog>
+
+</ui:composition>
+
+</html>
