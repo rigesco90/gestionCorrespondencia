@@ -14,7 +14,7 @@
 
 
 		<h:form id="frmGuiaCreate">
-			<p:fieldset legend="Nueva Guía" style="margin-bottom:10px">
+			<p:fieldset legend="Nueva Guía" style="margin-bottom:0px">
 				<div align="center">
 					<h:panelGroup id="display">
 						<p:panelGrid id="pnlPrincipalCrearGuia"
@@ -28,7 +28,7 @@
 								</p:column>
 								<p:column>
 									<p:inputText id="txtCodigo"
-										value="#{planillaController.guiaPlanilla.planilla.codigoPlanilla}"
+										value="#{planillaController.guiaPlanilla.guia.codigoGuia}"
 										title="Codigo" required="true" />
 								</p:column>
 
@@ -43,12 +43,17 @@
 								</p:column>
 								<p:column>
 									<h:panelGrid columns="2">
-										<p:inputText id="txtServicio"
-											value="#{planillaController.guiaPlanilla.planilla.codigoPlanilla}"
-											title="Codigo" required="true" />
+										<p:autoComplete id="autServicio"
+											value="#{planillaController.guiaPlanilla.guia.catNivelServicio}"
+											completeMethod="#{planillaController.completNivelServicios}"
+											var="servicio"
+											itemLabel="#{servicio.descripcionNivelServicio}"
+											itemValue="#{persona}" converter="ConvertAutocomplete"
+											requiredMessage="La persona es obligatorio" required="true"
+											maxlength="10" forceSelection="true" size="30">
+										</p:autoComplete>
 
-										<p:commandButton icon="ui-icon-search"
-											title="Buscar Servicio"
+										<p:commandButton icon="ui-icon-search" title="Nuevo Servicio"
 											oncomplete="PF('dlgServicioSearch').show()" immediate="true" />
 									</h:panelGrid>
 								</p:column>
@@ -125,7 +130,7 @@
 										disabled="true" />
 								</p:column>
 							</p:row>
-							
+
 							<p:row>
 								<p:column>
 									<p:outputLabel value="Peso Real:" id="lblPesoReal"
@@ -134,7 +139,7 @@
 								</p:column>
 								<p:column>
 									<p:inputNumber id="inPesoReal"
-										value="#{planillaController.guiaPlanilla.guia.peso_real}"/>									
+										value="#{planillaController.guiaPlanilla.guia.peso_real}" />
 								</p:column>
 
 								<p:column>
@@ -149,7 +154,7 @@
 
 								<p:column>
 									<p:inputNumber id="inVolReal"
-										value="#{planillaController.guiaPlanilla.guia.volumen_real}"/>
+										value="#{planillaController.guiaPlanilla.guia.volumen_real}" />
 								</p:column>
 
 								<p:column>
@@ -157,8 +162,8 @@
 								</p:column>
 
 								<p:column>
-									<p:outputLabel value="Valor declarado: "
-										id="lblVrDeclarado" styleClass="negrita" />
+									<p:outputLabel value="Valor declarado: " id="lblVrDeclarado"
+										styleClass="negrita" />
 									<h:outputLabel value="*" class="asterisco" />
 								</p:column>
 
@@ -169,18 +174,42 @@
 								</p:column>
 							</p:row>
 						</p:panelGrid>
+						<p:commandButton value="Aceptar"
+							actionListener="#{planillaController.addGuiasTemp}"
+							process="frmGuiaCreate" update="tblListGuias" />
 					</h:panelGroup>
 				</div>
-
-				<p:separator />
-
-				<h:panelGroup>
-					<div align="center">
-						<p:outputLabel value="Guias"
-							style="font-size: 20px; font-weight:bold;" />
-					</div>
-				</h:panelGroup>
 			</p:fieldset>
+
+			<p:separator />
+
+			<h:panelGroup>
+				<div align="center">
+					<p:outputLabel value="Guias"
+						style="font-size: 20px; font-weight:bold;" />
+					<p:dataTable id="tblListGuias" var="item"
+						value="#{planillaController.listGuiasTemp}" rowKey="#{item}"
+						emptyMessage="No Existe registro del Cliente con el valor insertado.!!!"
+						paginator="true" rows="5" paginatorAlwaysVisible="false"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Código" />
+							</f:facet>
+							<p:outputLabel value="#{item.codigoGuia}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<p:outputLabel value="Servicio" />
+							</f:facet>
+							<p:outputLabel value="#{item.codigoGuia}" />
+						</p:column>
+
+					</p:dataTable>
+				</div>
+			</h:panelGroup>
 		</h:form>
 
 	</p:dialog>

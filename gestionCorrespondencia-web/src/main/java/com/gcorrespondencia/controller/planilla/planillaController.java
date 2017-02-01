@@ -45,12 +45,14 @@ public class planillaController implements Serializable {
 	private Persona persona;
 
 	private List<CatServicio> listServicios;
+	private List<CatNivelServicio> lisNivelServicios;
 	private List<CatEstado> listEstados;
 	private List<Persona> listPersonas;
 	private List<CatRangoPeso> listRangoPesos;
 	private List<CatMunicipio> listMunicipios;
 	private List<CatDepartamento> listDeptos;
 	private List<CatTipoReparto> listTipoReparto;
+	private List<Guia> listGuiasTemp;
 
 	@PostConstruct
 	public void init() {
@@ -77,7 +79,7 @@ public class planillaController implements Serializable {
 		listEstados = planillaBo.estadosPlanilla();
 		listPersonas = new ArrayList<Persona>();
 		listServicios = new ArrayList<CatServicio>();
-		listRangoPesos = new ArrayList<CatRangoPeso>();		
+		listRangoPesos = new ArrayList<CatRangoPeso>();
 		listDeptos = new ArrayList<CatDepartamento>();
 		listTipoReparto = new ArrayList<CatTipoReparto>();
 
@@ -93,7 +95,6 @@ public class planillaController implements Serializable {
 		try {
 			FacesContext.getCurrentInstance().getExternalContext().redirect("./NuevaPlanilla.xhtml");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -136,8 +137,10 @@ public class planillaController implements Serializable {
 	}
 
 	public void listMunicipiosPorDepto() {
-		if (guiaPlanilla.getGuia().getCatNivelServicio().getCatMunicipio().getCatDepartamento().getIdDepartamento() != 0) {
-			int idDepto = guiaPlanilla.getGuia().getCatNivelServicio().getCatMunicipio().getCatDepartamento().getIdDepartamento();
+		if (guiaPlanilla.getGuia().getCatNivelServicio().getCatMunicipio().getCatDepartamento()
+				.getIdDepartamento() != 0) {
+			int idDepto = guiaPlanilla.getGuia().getCatNivelServicio().getCatMunicipio().getCatDepartamento()
+					.getIdDepartamento();
 			listMunicipios = new ArrayList<CatMunicipio>();
 			listMunicipios = planillaBo.listMpiosPorDepto(idDepto);
 		}
@@ -154,8 +157,37 @@ public class planillaController implements Serializable {
 				+ persona.getNumIdentificacion());
 	}
 
+	public void prepareCreateGuia() {
+		System.out.println("Entro a prepareCreateGuia..!!!");
+		if (lisNivelServicios == null) {
+			lisNivelServicios = new ArrayList<CatNivelServicio>();
+		}
+		lisNivelServicios = genericBO.findAll(CatNivelServicio.class);
+	}
+
+	public List<CatNivelServicio> completNivelServicios(String query) {
+		List<CatNivelServicio> listNivelServicioSugerido = new ArrayList<CatNivelServicio>();
+
+		if (lisNivelServicios.size() > 0 && query.length() > 0) {
+			for (CatNivelServicio catNivelServicio : lisNivelServicios) {
+				if (catNivelServicio.getDescripcionNivelServicio().toUpperCase().contains(query.toUpperCase())) {
+					listNivelServicioSugerido.add(catNivelServicio);
+				}
+			}
+		}
+		return listNivelServicioSugerido;
+	}
+
 	public void GuardarServicios() {
 		genericBO.create(guiaPlanilla.getGuia().getCatNivelServicio());
+	}
+
+	public void addGuiasTemp() {
+		if (listGuiasTemp == null) {
+			listGuiasTemp = new ArrayList<Guia>();
+		}
+
+		listGuiasTemp.add(guiaPlanilla.getGuia());
 	}
 
 	public Empresa getEmpresa() {
@@ -213,11 +245,11 @@ public class planillaController implements Serializable {
 	public void setGuiaPlanilla(GuiaPlanilla guiaPlanilla) {
 		this.guiaPlanilla = guiaPlanilla;
 	}
-	
+
 	public List<CatDepartamento> getListDeptos() {
 		return listDeptos;
 	}
-	
+
 	public void setListDeptos(List<CatDepartamento> listDeptos) {
 		this.listDeptos = listDeptos;
 	}
@@ -229,13 +261,20 @@ public class planillaController implements Serializable {
 	public void setListMunicipios(List<CatMunicipio> listMunicipios) {
 		this.listMunicipios = listMunicipios;
 	}
-	
+
 	public List<CatTipoReparto> getListTipoReparto() {
 		return listTipoReparto;
 	}
-	
+
 	public void setListTipoReparto(List<CatTipoReparto> listTipoReparto) {
 		this.listTipoReparto = listTipoReparto;
 	}
 
+	public List<Guia> getListGuiasTemp() {
+		return listGuiasTemp;
+	}
+
+	public void setListGuiasTemp(List<Guia> listGuiasTemp) {
+		this.listGuiasTemp = listGuiasTemp;
+	}
 }

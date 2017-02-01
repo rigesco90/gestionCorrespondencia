@@ -135,7 +135,8 @@
 			<div align="center">
 				<p:commandButton id="btnNuevaGuia" icon="ui-icon-plusthick"
 					value="Nueva Guía" title="Nueva Guía"
-					oncomplete="PF('dlgGuiaCreate').show()" immediate="true" />
+					oncomplete="PF('dlgGuiaCreate').show()" immediate="true" 
+					actionListener="#{planillaController.prepareCreateGuia}"/>
 
 				<p:spacer height="5" />
 
